@@ -116,7 +116,7 @@ abstract class Command extends Argument {
 
 class ArgResults {
   Command? command;
-  String? commonArg;
+  String? commandArg;
   Map<Option, Object?> options = {};
 
   // Return true if the flag exist

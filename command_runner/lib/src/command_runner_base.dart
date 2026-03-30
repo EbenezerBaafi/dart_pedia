@@ -14,7 +14,7 @@ class CommandRunner {
       UnmodifiableSetView<Command>(<Command>{..._commands.values});
 
   // onError property
-  Future<void> Function(Object)? onError;
+  FutureOr<void> Function(Object)? onError;
 
   FutureOr<void> run(List<String> input) async {
     try {
@@ -25,7 +25,7 @@ class CommandRunner {
       }
     } on Exception catch (exception) {
       if (onError != null) {
-        onError!(exception);
+        await onError!(exception);
       } else {
         rethrow;
       }

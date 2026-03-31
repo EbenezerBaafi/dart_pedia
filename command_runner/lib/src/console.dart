@@ -48,4 +48,18 @@ enum ConsoleColor {
   final int r;
   final int g;
   final int b;
+
+  String get enableForeground => '$ansiEscapeLiteral[38;2;r;$g;${b}m]';
+  String get enableBackground => '$ansiEscapeLiteral[48;2;$r;$g;${b}m]';
+
+  static String get reset => '$ansiEscapeLiteral[0m';
+
+  String applyForeground(String text) {
+    return '$ansiEscapeLiteral[38;2;$r;$g;${b}m$text$reset';
+  }
+
+  /// Sets background color and then resets the color change
+  String applyBackground(String text) {
+    return '$ansiEscapeLiteral[48;2;$r;$g;${b}m$text$ansiEscapeLiteral[0m';
+  }
 }
